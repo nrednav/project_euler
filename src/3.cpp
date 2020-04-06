@@ -2,49 +2,28 @@
 
 #include "Main.h"
 
-bool is_prime(int n);
-void get_prime_factors(long long &n, vector<int> &prime_factors);
-
-vector<int> primes;
+void prime_factorize(long long &n, vector<int> &prime_factors);
 
 int main() {
 
   long long n = 600851475143;
 
   vector<int> prime_factors;
-  get_prime_factors(n, prime_factors);
+  prime_factorize(n, prime_factors);
 
-  for (int factor: prime_factors) {
-    cout << factor << " ";
-  }
+  cout << *max_element(prime_factors.begin(), prime_factors.end()) << endl;
 
   return 0;
 }
 
-bool is_prime(int n) {
-  for (int prime: primes) {
-    if (prime > sqrt(n))
-      break;
-
-    if (n % prime == 0)
-      return false;
-  }
-
-  primes.push_back(n);
-  return true;
-}
-
-void get_prime_factors(long long &n, vector<int> &prime_factors) {
-  int divisor = 2;
-
-  while (n > 1) {
-    if (is_prime(divisor)) {
-      if (n % divisor == 0) {
-        n /= divisor;
-        prime_factors.push_back(divisor);
-      }
-      else divisor++;
+void prime_factorize(long long &n, vector<int> &prime_factors) {
+  for (int i = 2; i <= sqrt(n); i++) {
+    while (n % i == 0) {
+      prime_factors.push_back(i);
+      n /= i;
     }
-    else divisor++;
   }
+  
+  if (n > 1)
+    prime_factors.push_back(n);
 }
