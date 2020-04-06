@@ -6,7 +6,7 @@ int smallest_factor(const int &n);
 
 int main()
 {
-  int limit = 10;
+  int limit = 20; // Change limit to required range
   int smallest_multiple = limit;
 
   for (int i = 2; i <= limit; i++) {
