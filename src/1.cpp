@@ -3,7 +3,6 @@
 #include "Main.h"
 
 int main() {
-
   int sum = 0;
   int limit = 1000;
 
